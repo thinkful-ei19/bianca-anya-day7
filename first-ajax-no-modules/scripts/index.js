@@ -1,4 +1,5 @@
-const API_KEY = 'YOUR_KEY_HERE';
+'use strict';
+const API_KEY = 'AIzaSyB7f9d4tXJRlEKS_tXLRyCSzMyqTVv3K2s';
 
 const store = {
   videos: []
@@ -6,7 +7,7 @@ const store = {
 
 // TASK: Add the Youtube Search Base URL here:
 // Documentation is here: https://developers.google.com/youtube/v3/docs/search/list#usage
-const BASE_URL = '';
+const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 
 // TASK:
 // 1. Create a `fetchVideos` function that receives a `searchTerm` and `callback`
@@ -14,7 +15,11 @@ const BASE_URL = '';
 // 3. Make a getJSON call using the query object and sending the provided callback in as the last argument
 // TEST IT! Execute this function and console log the results inside the callback.
 const fetchVideos = function(searchTerm, callback) {
-
+  const query = {
+    q: `${searchTerm} in:name`,
+    per_page: 0
+  }
+  $.getJSON(BASE_URL, query, callback)
 };
 
 // TASK:
