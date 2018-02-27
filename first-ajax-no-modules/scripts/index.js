@@ -16,11 +16,14 @@ const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 // TEST IT! Execute this function and console log the results inside the callback.
 const fetchVideos = function(searchTerm, callback) {
   const query = {
-    q: `${searchTerm} in:name`,
-    per_page: 0
+    q: `${searchTerm} in:name`, //?
+    part: 'snippet',
+    key: API_KEY
   }
-  $.getJSON(BASE_URL, query, callback)
+  $.getJSON(BASE_URL, query, callback);
+  
 };
+fetchVideos('tomato', function(data) {console.log(data)});
 
 // TASK:
 // 1. Create a `decorateResponse` function that receives the Youtube API response
@@ -31,8 +34,19 @@ const fetchVideos = function(searchTerm, callback) {
 // TEST IT! Grab an example API response and send it into the function - make sure
 // you get back the object you want.
 const decorateResponse = function(response) {
-
+    const results = response.items.map((item, index) => {
+      const obj = {
+        id: item.id.videoId,
+        title: item.snippet.title,
+        thumbnail: item.snippet.thumbnails.default.url 
+      }
+            
+    }
+    
+  );
+)
 };
+
 
 // TASK:
 // 1. Create a `generateVideoItemHtml` function that receives the decorated object
